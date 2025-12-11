@@ -1,0 +1,27 @@
+replicaCount: 3
+
+image:
+  tag: latest
+
+
+frontend:
+  image:
+    repository: nginx
+  service:
+    port: 80
+
+
+backend:
+  image:
+    repository: digitalocean/flask-helloworld
+  service:
+    port: 5000
+  livenessProbe:
+    path: /
+  readinessProbe:
+    path: /
+
+ingress:
+  enabled: true
+  host: my-web-app.com
+  className: nginx
